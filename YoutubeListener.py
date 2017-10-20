@@ -12,6 +12,7 @@ class YoutubeListener:
     def check_update(self):
         feeds = feedparser.parse('https://www.youtube.com/feeds/videos.xml?channel_id=UC_x5XG1OV2P6uZZ5FSM9Ttw')
         video_title = feeds.entries[0]['title']
+        print(feeds.entries[0])
         print(feeds.entries[0]['updated'])
         print(feeds.entries[0]['published'])
         # print(feeds.entries[0]['id'])
