@@ -7,7 +7,7 @@ class Recoder:
         print("Recoder Message: Recoder start")
         # file = shelve.open("./record/list.db", protocol=2, flag='c')
         # file['num'] = 0;
-        # file['dict'] = {0:['title'], 1:['id'], 2:['date'],3:['subtitle'], 4:['translate'], 5:['download'], 6:['compos'], 7:['upload']}
+        # file['dict'] = {0:['title'], 1:['id'], 2:['date'],3:['subtitle_en'], 4:['subtitle_cn'], 5:['download_video'], 6:['compos_en'], 7:['upload_en'], 8:['compos_cn'], 9:['upload_cn']}
         # file.sync()
         # file.close()
 
@@ -28,7 +28,7 @@ class Recoder:
         file['dict'][1].append(id)
         file['dict'][2].append(date)
 
-        for i in range(3,8):
+        for i in range(3,10):
             temp = file['dict'][i]
             temp.append('null')
             file['dict'][i] = temp
@@ -51,12 +51,19 @@ class Recoder:
         else:
             return False
 
-    def check_sub(self):
-        file = shelve.open("./record/list.db", protocol=2, flag='c')
-        num = file['num']
-        sub_latest = file['dict'][3][num]
-        file.close()
-        return sub_latest
+    def check_sub(self, lang):
+        if lang == 'en':
+            file = shelve.open("./record/list.db", protocol=2, flag='c')
+            num = file['num']
+            sub_latest = file['dict'][3][num]
+            file.close()
+            return sub_latest
+        elif lang == 'cn':
+            file = shelve.open("./record/list.db", protocol=2, flag='c')
+            num = file['num']
+            sub_latest = file['dict'][4][num]
+            file.close()
+            return sub_latest
 
     def check_download(self):
         file = shelve.open("./record/list.db", protocol=2, flag='c')

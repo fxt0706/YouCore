@@ -1,7 +1,5 @@
 import YoutubeListener
 import YouList
-import OldDelete
-import ComposVideo
 
 class YouTools:
 
@@ -13,7 +11,7 @@ class YouTools:
 
 if __name__ == '__main__':
     # code your scheduel
-    run = YouList.YouList()
+    YouList.YouList()
 
 
     

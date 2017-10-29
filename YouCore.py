@@ -19,7 +19,8 @@ def delete_youku_video(id):
 def download_youtube(title,url_video):
     print("YouCoreMessage: download video " + title + " now")
     dowload_path = os.getcwd() + r'/resource/videos'
-    cmd = 'proxychains you-get --itag=137 -o ' + dowload_path + ' \'' + url_video + '\''
+    # cmd = 'proxychains you-get --itag=137 -o ' + dowload_path + ' \'' + url_video + '\''
+    cmd = 'you-get --itag=137 -o ' + dowload_path + ' \'' + url_video + '\''
     print(cmd)
     cmd_re = subprocess.call(cmd, shell=True)
     if (cmd_re == 0):

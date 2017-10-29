@@ -13,19 +13,25 @@ class YoutubeListener:
     def __init__(self):
         print("YoutubeListener Message: listener start")
         self.check_update()
-        schedule.every(60).minutes.do(self.check_update)
+        schedule.every(60).minutes.do(self.check_task)
         while True:
             schedule.run_pending()
 
-    def check_update(self):
-        feeds = feedparser.parse('https://www.youtube.com/feeds/videos.xml?channel_id=UC_x5XG1OV2P6uZZ5FSM9Ttw')
+    def check_task(self):
+        self.check_update(0)
+        self.check_update(1)
+        self.check_update(2)
+
+    def check_update(self, num):
+        id = ['UC_x5XG1OV2P6uZZ5FSM9Ttw','UCnUYZLuoy1rq1aVMwx4aTzw','UCVHFbqXqoYvEWM1Ddxl0QDg'] #GD CD AD
+        feeds = feedparser.parse('https://www.youtube.com/feeds/videos.xml?channel_id=' + id[num])
 
         self.video_id = feeds.entries[0]['id'].split(':', 2)[2]
 
 
         if Recoder.check_id(self, self.video_id):
             print('YoutubeListener Message: already latest video: ' + self.video_title)
-            self.download_subtitle(self.video_id, self.video_title)
+            self.download_subtitle(self.video_id, self.video_title, 'en')
             self.download_video(self.video_title, self.video_url)
             self.compos_video(self.video_title)
             self.upload_video(self.video_title)
@@ -39,13 +45,13 @@ class YoutubeListener:
                 print('YoutubeListener Message: new video record: ' + self.video_title)
             else:
                 self.video_id = Recoder.latest()[1]
-            self.download_subtitle(self.video_id, self.video_title)
+            self.download_subtitle(self.video_id, self.video_title, 'en')
             self.download_video(self.video_title, self.video_url)
             self.compos_video(self.video_title)
             self.upload_video(self.video_title)
 
-    def download_subtitle(self, id, title):
-        if Recoder.check_sub(self) == 'null':
+    def download_subtitle(self, id, title, lang):
+        if Recoder.check_sub(self, lang) == 'null':
             print("YoutubeListener Message: download subtitle now")
             Recoder.add_content(self, 3, 'downloading')
             sub_url = 'https://www.youtube.com/api/timedtext?lang=en&fmt=vtt&v=' + id + '&name=CC+%28English%29'
