@@ -36,6 +36,8 @@ class YouUpload():
         youku_obj.check()
         result = youku_obj.commit()
 
+        print("YouUpload Mesaage: result is " + result)
+
         if youku_obj.finished == True:
             return result
         elif youku_obj.finished == False:

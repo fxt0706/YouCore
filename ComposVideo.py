@@ -12,9 +12,9 @@ class ComposVideo:
         cmd = r'cd ' + path
         cmd_re = subprocess.call(cmd, shell=True)
         if cmd_re == 0:
-            cmd = r'cd ' + path +' && mkvmerge -o \'' + title + 'en.mkv\' \'' + title + '.mp4\' \'' + title + '.en.srt\''
+            cmd = r'cd ' + path +' && mkvmerge -o \'' + title + '.en.mkv\' \'' + title + '.mp4\' \'' + title + '.en.srt\''
             print(cmd)
-            cmd_re = subprocess.call(cmd, shell=True)
+            cmd_re = subprocess.call(cmd, shell=True)   # strart compositon
 
             result = os.path.isfile(path + '/' + title +'.en.mkv')
             if result == True:

@@ -35,6 +35,7 @@ class Recoder:
         file['num'] = num
 
         file.sync()
+        print('Recoder Message: the dict is : \n')
         print(file['dict'])
 
         file.close()
@@ -44,7 +45,7 @@ class Recoder:
     def check_id(self, id):
         file = shelve.open("./record/list.db", protocol=2, flag='c')
         id_latest = file['dict'][1][file['num']]
-        print(id_latest)
+        print("Recoder Message: latest id is " + id_latest)
         file.close()
         if id_latest == id:
             return True
@@ -86,7 +87,6 @@ class Recoder:
         file.close()
         return upload_latest
 
-
     def add_content(self, item, content):
         file = shelve.open("./record/list.db", writeback=True)
         num = file['num']
@@ -103,7 +103,9 @@ class Recoder:
         upload_latest = file['dict'][7][num]
 
         for each in sub_latest,download_latest,compos_latest,upload_latest:
-            if each == 'null':     # fix this later
+            if each == 'null':     # if not finished, do schedule again
+                return False
+            elif each == 'running':
                 return False
 
         return True
