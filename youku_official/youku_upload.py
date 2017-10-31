@@ -239,6 +239,8 @@ class YoukuUpload(object):
         return r.json()
 
     def commit(self):
+        print("youku_upload Message: start commit")
+
         status = self.check()
         if status['status'] == 4:
             raise ValueError('upload has not complete, should not commit')
@@ -257,6 +259,7 @@ class YoukuUpload(object):
         check_error(r, 200)
         self.finished = True
         self._delete_upload_state_file()
+
         return r.json()['video_id']
 
     def cancel(self):
