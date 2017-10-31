@@ -19,7 +19,7 @@ class YouUpload():
         # replace client_id and refresh_token with your parameter
         client_id = config.CLIENT_ID_YUN
         refresh_token = config.REFRESH_TOKEN_YUN
-        upload_path = '\'' + path + '/' + video_name + '.en.mkv' + '\''
+        upload_path = path + '/' + video_name + '.en.mkv'
 
         # input the info of video
         self.video_info = {
@@ -45,4 +45,4 @@ class YouUpload():
 
 
 if __name__ == '__main__':
-    YouUpload('The Developer Show (TL;DR 085)')
+    YouUpload('video name')
