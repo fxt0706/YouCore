@@ -11,7 +11,11 @@ from youku_official import YoukuUpload
 
 class YouUpload():
 
-    def __init__(self, video_name):
+    def __init__(self):
+        print('YouUpload Message: start upload video')
+
+    def run(self, video_name):
+        print('YouUpload Message: video name is ' + video_name)
 
         path = os.getcwd() + '/resource/videos'
         # change video_name to your onine title of YouTube video
@@ -45,4 +49,5 @@ class YouUpload():
 
 
 if __name__ == '__main__':
-    YouUpload('video name')
+    upload = YouUpload()
+    upload.run('name')

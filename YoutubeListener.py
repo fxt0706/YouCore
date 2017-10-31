@@ -109,7 +109,7 @@ class YoutubeListener:
         if check == 'null':
             print('YoutubeListener Message: upload ' + title + ' now')
             Recoder.add_content(self, 7, 'running')
-            result = YouUpload(self.video_title)
+            result = YouUpload.run(self, self.video_title)
             if result != False:
                 print('YoutubeListener Message: upload ' + title + ' succeed')
                 Recoder.add_content(self, 7, 'true')
