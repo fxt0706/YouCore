@@ -28,7 +28,7 @@ class YouUpload():
         # input the info of video
         self.video_info = {
             'title' : video_name,
-            'tags' : '',
+            'tags' : 'google',
             'description' : '',
             'category' : ''
         }
