@@ -10,7 +10,7 @@ def get_access_token_yun():
     payloads_renew['refresh_token'] = config.REFRESH_TOKEN_YUN
     # print(payloads_renew)
     json_renew = requests.post(url=config.URL_RENEW_ACCESS_YUN, data=payloads_renew).json()
-    # print(json_renew)
+    print(json_renew)
     return json_renew['access_token']
 
 def delete_youku_video(id):
@@ -27,7 +27,6 @@ def download_youtube(title,url_video):
         return True
     else:
         print("YouCoreMessage: download failed. Please make sure your internet connected and check the url again")
-
 
 def upload_youku(title):
     print("YouCoreMessage: upload video " + title + " to youku now")
