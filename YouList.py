@@ -17,6 +17,7 @@ class YouList():
     def __init__(self, date = '1970-01-01'):
         print('YouList Message: Start output')
 
+        time_now = time.strftime("%Y-%m-%d_%H:%M:%S", time.localtime())
         self.date = date + ' 23:59:59'
         self.init_xls()
 
@@ -48,7 +49,7 @@ class YouList():
         # close the file
         file_times.close()
         file_video.close()
-        xls_data.save("./resource/list/youku_video_data.xls")
+        xls_data.save("./resource/list/youku_video_data_" + time_now + ".xls")
         print("Get the video list succeed! \nCheck the two .txt files and .xlsx file for details")
 
 
