@@ -59,9 +59,9 @@ class YoutubeListener:
         video_sub_tree = etxml.fromstring(r.text)
         for item in video_sub_tree:
             time_now = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-            if item.attrib['id'] == 0:
+            if item.attrib['id'] == '0':
                 YouSheet().append_cell(time_now, row, 9, sheet_ID)
-            elif item.attrib['id'] == 6:
+            elif item.attrib['id'] == '6':
                 YouSheet().append_cell(time_now, row, 10, sheet_ID)
 
 
