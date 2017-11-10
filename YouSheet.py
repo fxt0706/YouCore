@@ -9,19 +9,19 @@ class YouSheet():
         print('YouSheet Message: start sheet')
 
     def append_list(self, value, row, ID):
-        clinet = pygsheets.authorize()
+        clinet = pygsheets.authorize(outh_nonlocal= True)
         sh = clinet.open_by_key(ID)
         ws = sh.sheet1
         ws.insert_rows(row, values=value, inherit=True)
 
     def append_cell(self, value, row, col, ID):
-        clinet = pygsheets.authorize()
+        clinet = pygsheets.authorize(outh_nonlocal= True)
         sh = clinet.open_by_key(ID)
         ws = sh.sheet1
         ws.update_cell((col, row), value)
 
     def get_value(self, key, ID, latest = True):
-        clinet = pygsheets.authorize()
+        clinet = pygsheets.authorize(outh_nonlocal= True)
         sh = clinet.open_by_key(ID)
         ws = sh.sheet1
         row = ws.rows
